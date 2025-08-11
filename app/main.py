@@ -6,10 +6,12 @@ from app.routes.articles import router as articles_router
 from app.routes.narrative import router as narratives_router
 from app.routes.highlights import router as highlights_router
 from app.routes.analyze import router as analyze_router
+import os
 
 app = FastAPI()
 
-origins = [
+origins_env = os.getenv("CORS_ORIGINS", "")
+origins = [o.strip() for o in origins_env.split(",") if o.strip()] or [
     "https://biaslab.netlify.app",
     "http://localhost:5173",
 ]
