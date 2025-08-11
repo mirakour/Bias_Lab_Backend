@@ -7,11 +7,16 @@ from app.routes.narrative import router as narratives_router
 from app.routes.highlights import router as highlights_router
 from app.routes.analyze import router as analyze_router
 
-app = FastAPI(title="Bias Lab API", version="0.1.0")
+app = FastAPI()
+
+origins = [
+    "https://biaslab.netlify.app",
+    "http://localhost:5173",
+]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=CORS_ORIGINS,
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
